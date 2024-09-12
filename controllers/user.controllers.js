@@ -1,3 +1,5 @@
+const {v4: uuidv4} = require('uuid')
+const { setUser, getUser } = require('../utils/auth.js')
 const User = require("../models/user.model.js");
 
 async function handleUserSignUp(req, res) {
@@ -21,7 +23,13 @@ async function handleUserLogin(req, res) {
         if (!user) {
             return res.status(404).send({ message: "User not found" });
         }
-        res.status(200).send({ message: "User logged in successfully" });
+        // res.status(200).send({ message: "User logged in successfully" });
+
+        //assigning unique session id in form of cookieclindex.js      
+        const sessionId = uuidv4();
+        setUser(sessionId, user);
+        res.cookie("uid", sessionId);
+        return res.redirect("/")
     }
     catch (error) {
         res.status(400).send(error);

@@ -3,10 +3,10 @@ const { handleUserSignUp, renderHomePage, renderLoginPage, renderSignUpPage, han
 
 const router = express.Router();
 
-router.post("/signup", handleUserSignUp); // Route to handle user signup
 router.get("/", renderHomePage); // Route to render home page
-router.get("/login", renderLoginPage); // Route to render login page
 router.get("/signup", renderSignUpPage); // Route to render signup page
+router.post("/signup", handleUserSignUp); // Route to handle user signup
+router.get("/login", renderLoginPage); // Route to render login page
 router.post("/login", handleUserLogin); // Route to handle user login
 
 
